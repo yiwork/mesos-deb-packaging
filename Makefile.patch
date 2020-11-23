@@ -1,0 +1,11 @@
+--- a/src/Makefile.am	2020-11-23 19:42:06.358070248 +0000
++++ b/src/Makefile.am	2020-11-23 19:43:04.830157395 +0000
+@@ -130,7 +130,7 @@
+ 
+ # Setup CPPFLAGS that are used for most source files.
+ MESOS_CPPFLAGS = $(AM_CPPFLAGS)
+-MESOS_CPPFLAGS += @WERROR@
++#MESOS_CPPFLAGS += @WERROR@
+ MESOS_CPPFLAGS += -DLIBDIR=\"$(libdir)\"
+ MESOS_CPPFLAGS += -DPKGLIBEXECDIR=\"$(pkglibexecdir)\"
+ MESOS_CPPFLAGS += -DPKGDATADIR=\"$(pkgdatadir)\"
