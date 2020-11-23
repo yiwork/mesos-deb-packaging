@@ -2,6 +2,8 @@ FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
+COPY . /app
+
 # python3-distutils needed to run get-pip.py script
 RUN apt-get update && \
     apt-get upgrade --yes && \
@@ -37,3 +39,4 @@ RUN apt-get update && \
     apt-get clean &&  \
     apt-get autoremove --yes
 
+RUN /app/build_mesos
