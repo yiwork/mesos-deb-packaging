@@ -1,6 +1,7 @@
 FROM ubuntu:focal
 
-ENV DEBIAN_FRONTEND="noninteractive"
+ENV DEBIAN_FRONTEND="noninteractive" \
+    PYTHON="/usr/bin/python2.7"
 
 COPY . /app
 
@@ -9,7 +10,7 @@ WORKDIR /app
 # python3-distutils needed to run get-pip.py script
 RUN apt-get update && \
     apt-get upgrade --yes && \
-    apt-get install --yes \
+    sudo apt-get install --yes \
       apt-transport-https \
       apt-utils       \
       build-essential \
@@ -37,7 +38,6 @@ RUN apt-get update && \
       make        \
       libssl-dev  \
       libcurl4    \
-      libcurl4-gnutls-dev \
       libcurl4-nss-dev    \
       libtool     \
       shellcheck  \
@@ -54,4 +54,15 @@ RUN apt-get update && \
     apt-get clean &&  \
     apt-get autoremove --yes
 
-RUN apt-get install -y lib/app/build_mesos
+RUN wget https://apache.osuosl.org/mesos/1.10.0/mesos-1.10.0.tar.gz ./ && \
+    tar xvf ./mesos-1.10.0.tar.gz  && \
+    mv mesos-1.10.0 mesos-repo    && \
+    patch < Makefile.patch        && \
+    cat log_linux.path >> mesos-repo/3rdparty/grpc-1.10.0.patch  && \
+    cd mesos-repo && \
+    ./bootstrap   && \
+    mkdir build   && \
+    cd build      && \
+    ../configure  && \
+    make
+
