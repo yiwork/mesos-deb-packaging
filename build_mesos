@@ -111,7 +111,7 @@ function patch_files {
   cat log_linux.patch >> "$src_dir/3rdparty/grpc-1.10.0.patch"
   cp Makefile.patch "$src_dir/src"
   cd "$src_dir/src"
-  patch < Makefile.patch
+  OUT="$(patch -N < Makefile.patch)" || echo "${OUT}" | grep "Skipping patch" -q || (echo "$OUT" && false);
   cd "$this"
 }
 
