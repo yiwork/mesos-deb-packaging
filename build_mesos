@@ -101,9 +101,18 @@ function main {
 
   if ! $prebuilt; then
     checkout
+    patch_files
   fi
   version=${version:-"$(mesos_version)"}      # Set from checkout if no version
   ( cd "$src_dir" && go )
+}
+
+function patch_files {
+  cat log_linux.patch >> "$src_dir/3rdparty/grpc-1.10.0.patch"
+  cp Makefile.patch "$src_dir/src"
+  cd "$src_dir/src"
+  patch < Makefile.patch
+  cd "$this"
 }
 
 function go {
