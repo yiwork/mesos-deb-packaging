@@ -36,7 +36,7 @@ RUN apt-get update && \
       make        \
       libssl-dev  \
       libcurl4    \
-      libcurl4-nss-dev    \
+      libcurl4-nss-dev \
       libtool     \
       software-properties-common \
       vim         \
