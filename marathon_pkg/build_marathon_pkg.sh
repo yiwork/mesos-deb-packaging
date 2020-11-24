@@ -11,6 +11,8 @@
 OS_VERSION=ubuntu2004
 OLD_OS_VERSION=ubuntu1604
 VERSION=1.9.81-0.1.20190905233136
+
+# you can also grab compiled code from website, and uncomment the following
 #wget https://downloads.mesosphere.io/marathon/builds/${VERSION}/marathon-${VERSION}.${OLD_OS_VERSION}.tgz -O marathon.tgz
 #tar xvf marathon.tgz
 #cp -R marathon-${VERSION}/{bin,lib} marathon_pkg_template/usr/share/marathon/
