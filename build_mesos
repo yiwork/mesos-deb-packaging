@@ -108,8 +108,9 @@ function main {
 }
 
 function patch_files {
-  cat log_linux.patch >> "$src_dir/3rdparty/grpc-1.10.0.patch"
-  cp Makefile.patch "$src_dir/src"
+  touch "$src_dir/CHANGELOG"   # packaging will fail, apparently src doesn't come with CHANGLOG
+  cat patch_files/log_linux.patch >> "$src_dir/3rdparty/grpc-1.10.0.patch"
+  cp patch_files/Makefile.patch "$src_dir/src"
   cd "$src_dir/src"
   OUT="$(patch -N < Makefile.patch)" || echo "${OUT}" | grep "Skipping patch" -q || (echo "$OUT" && false);
   cd "$this"
