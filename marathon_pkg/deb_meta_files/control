@@ -1,0 +1,12 @@
+Package: marathon
+Version: {{ VERSION }}
+License: Apache-2.0
+Vendor: Mesosphere, Inc.
+Architecture: all
+Maintainer: Mesosphere Package Builder <support@mesosphere.io>
+Installed-Size: 75037
+Depends: java8-runtime-headless, lsb-release, unzip
+Section: default
+Priority: extra
+Homepage: https://github.com/mesosphere/marathon
+Description: Cluster-wide init and control system for services running on Apache Mesos
