@@ -19,9 +19,9 @@ VERSION=1.9.81-0.1.20190905233136
 
 sed -i "s/{{ VERSION }}//g" deb_meta_files/control > deb_meta_files/newcontrol
 
-fpm -t deb -s dir -n "marathon" -v 1.9.81-0.1.20190905233136.ubuntu2004                      \
+fpm -t deb -s dir -n "marathon" -v 1.9.81-0.1.20190905233136.ubuntu2004 -C src/              \
     --config-files deb_meta_files/conffiles --deb-custom-control deb_meta_files/newcontrol   \
     --pre-install deb_meta_files/preinst --post-install deb_meta_files/postinst              \
     --before-remove deb_meta_files/prerm --after-remove deb_meta_files/postrm                \
-    -d default-jdk src/
+    -d default-jdk usr/ etc/ lib/
 
